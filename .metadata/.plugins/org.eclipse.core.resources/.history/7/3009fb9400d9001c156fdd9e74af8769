@@ -1,0 +1,127 @@
+package 과제;
+
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+
+public class Homework8 extends JFrame {
+	
+	private JButton btnGo;
+	private JTextField inputId;
+	private JCheckBox storeId;
+	private JRadioButton sw, vr;
+	
+	public Homework8() {
+		setTitle("전공 선택");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+		setSize(100,120);
+		
+		
+		JPanel panel = new JPanel();
+		
+		GoListener listener = new GoListener();
+				
+		JLabel label1 = new JLabel("이름과 전공을", JLabel.RIGHT);
+		label1.setFont(new Font("SansSerif", Font.BOLD, 26));
+		label1.setForeground(Color.blue);
+		JLabel label = new JLabel(" 선택하시오.", JLabel.LEFT);
+		label.setFont(new Font("SansSerif", Font.BOLD, 26));
+		label.setForeground(Color.blue);
+		
+		panel.add(label1);
+		panel.add(label);
+				
+		JLabel labelId = new JLabel("이름", JLabel.RIGHT);
+		inputId = new JTextField(8);
+		
+		panel.add(labelId);
+		panel.add(inputId);
+		
+		JPanel panel2 = new JPanel();
+		setLayout(new FlowLayout(FlowLayout.LEADING, 10, 10));
+		
+		JLabel labelmajor = new JLabel("전공:", JLabel.LEFT);
+		ButtonGroup group = new ButtonGroup();
+		group.add(sw);
+		group.add(vr);
+		sw= new JRadioButton("소프트웨어");
+		vr= new JRadioButton("가상현실");
+		
+		panel2.add(new JLabel());
+		panel2.add(labelmajor);
+		panel2.add(sw);
+		panel2.add(vr);
+		
+		JPanel panel3 = new JPanel();
+		setLayout(new FlowLayout(FlowLayout.TRAILING, 10, 10));
+		
+		btnGo = new JButton("Go");
+		btnGo.addActionListener(listener);
+					
+		panel3.add(btnGo);
+		
+		add(panel);
+		add(panel2);
+		add(panel3);
+		pack();
+		
+	}
+	public class GoListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if (e.getSource()==btnGo) {
+				String id= inputId.getText();
+				String sw1= sw.getText();
+				String vr1= vr.getText();
+				if(sw.isSelected() && vr.isSelected()) {
+					String msg = id + "님은 " + sw1 + " 전공입니다.";
+					(new HomeworkResult8(msg)).setVisible(true);
+					dispose();
+				}
+				else if(sw.isSelected()) {
+					String msg = id + "님은 " + sw1 + " 전공입니다.";
+					(new HomeworkResult8(msg)).setVisible(true);
+					dispose();
+								
+				}
+				else if(vr.isSelected()){
+					String msg = id + "님은 " + vr1 + " 전공입니다.";
+					(new HomeworkResult8(msg)).setVisible(true);
+					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "전공을 선택하세요!");
+				}
+			}
+				
+				
+					
+				
+				}
+			
+		}
+				
+		
+	
+	
+	
+		public static void main(String[] args) {
+			(new Homework8()).setVisible(true);
+		}
+
+}

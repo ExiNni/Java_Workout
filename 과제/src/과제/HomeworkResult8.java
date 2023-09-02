@@ -1,0 +1,29 @@
+package 과제;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+public class HomeworkResult8 extends JFrame {
+	
+	public HomeworkResult8(String msg) {
+		setSize(400,200);
+		setTitle("전공 선택 결과");
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		JLabel msgLabel = new JLabel(msg);
+		msgLabel.setFont(new Font("Serif", Font.BOLD,20));
+		msgLabel.setForeground(Color.RED);
+		
+		Container container = getContentPane();
+		container.setLayout(new FlowLayout());
+		container.add(msgLabel);
+		
+			}
+
+}
